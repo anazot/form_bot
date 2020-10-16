@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HelloWorld></HelloWorld>
+    <Login></Login>
     <form>
       <label>Логин</label>
       <input required type="text" v-model="login">
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Login from './components/Login.vue'
 export default {
   name: 'App',
   data(){
@@ -26,7 +26,7 @@ export default {
 
   },
   components:{
-    HelloWorld,
+    Login,
   },
   methods:{
     signup: function (){
