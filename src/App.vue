@@ -1,17 +1,44 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld></HelloWorld>
+    <form>
+      <label>Логин</label>
+      <input required type="text" v-model="login">
+      <label>Пароль</label>
+      <input required type="text" v-model="password">
+      <button>Войти</button>
+    </form>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data(){
+    return{
+      login: "",
+      password: "",
+    }
+
+  },
+  computed:{
+
+  },
+  components:{
+    HelloWorld,
+  },
+  methods:{
+    signup: function (){
+      let login = this.login;
+      let password = this.password;
+      this.$store.dispatch('signup', {login, password}).then(() => {
+        this.$router.push('/')
+        .catch(error => {
+          console.log(error)
+        })
+      })
+    }
   }
 }
 </script>
