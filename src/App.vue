@@ -1,42 +1,34 @@
 <template>
   <div id="app">
-    <Login></Login>
-    <form>
-      <label>Логин</label>
-      <input required type="text" v-model="login">
-      <label>Пароль</label>
-      <input required type="text" v-model="password">
-      <button>Войти</button>
-    </form>
+    <div id="nav">
+      <Main></Main>
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <script>
-import Login from './components/Login.vue'
+
+//import Login from './components/Login.vue'
+import Main from "@/components/Main";
+
 export default {
   name: 'App',
-  data(){
-    return{
-      login: "",
-      password: "",
-    }
 
+  components:{
+      Main,
+      //Login,
   },
   computed:{
-
-  },
-  components:{
-    Login,
+    isLogged: function (){
+      return (this.$store.getters.isLogged)
+    }
   },
   methods:{
-    signup: function (){
-      let login = this.login;
-      let password = this.password;
-      this.$store.dispatch('signup', {login, password}).then(() => {
-        this.$router.push('/')
-        .catch(error => {
-          console.log(error)
-        })
+    logout: function (){
+      this.$store.dispatch('logout')
+      .then(() => {
+        this.$router.push('/login')
       })
     }
   }
@@ -44,12 +36,11 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body, html {
+  background:#CDCBD7;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
 }
 </style>
