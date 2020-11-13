@@ -10,7 +10,7 @@ const Authenticated = (to, from, next) => {
         next()
         return
     }
-    next('/login')
+    next('/')
 }
 const notAuthenticated = (to, from, next) => {
     if (!store.getters.isLogged){
@@ -23,13 +23,8 @@ const notAuthenticated = (to, from, next) => {
 const router = new Router({
     mode: 'history',
     routes:[
-
-        // {
-        //     path: '/',
-        //     component: Main
-        // },
         {
-            path: '/login',
+            path: '/',
             component: Login,
             beforeEnter: notAuthenticated
         },
@@ -49,7 +44,7 @@ router.beforeEach((to, from,  next) => {
             next()
             return
         }
-        next('/login')}
+        next('/')}
     else{
         next()
     }
