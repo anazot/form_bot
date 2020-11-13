@@ -4,12 +4,9 @@
   <div id="app" >
     <form @submit.prevent = "signup">
       <h1 class="auth" id="enter">Авторизация</h1>
-<!--      <label>Логин</label>-->
       <input class="auth" id="login" required type="text" v-model="login" name="login" placeholder="Логин">
-<!--      <label>Пароль</label>-->
       <input class="auth" id="password" required type="password" v-model="password" name="password" placeholder="Пароль">
-      <button id="button" type="submit">Войти</button>
-
+      <button id="button_login" type="submit">Войти</button>
     </form>
   </div>
   </body>
@@ -44,7 +41,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 @font-face {
   font-family: 'OpenSans-Light';
   src: url("../fonts/OpenSans-Light.ttf")
@@ -115,10 +112,10 @@ input:focus{
 input::-webkit-input-placeholder{
   color: #a7a7a7;
 }
-#button{
+#button_login{
   font-family: 'OpenSans-Light';
   font-size: 1.1vw;
-  width: 50%;
+  width: 10vw;
   height: 7vh;
   position: absolute;
   top:73%;
@@ -126,7 +123,7 @@ input::-webkit-input-placeholder{
   border: none;
   color: #FFFFFF;
 }
-#button:hover{
+#button_login:hover{
   border: solid 2px #4633A7;
   background: rgba(0,0,0,0);
   transition: all 0.05s;

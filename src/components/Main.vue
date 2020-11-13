@@ -1,5 +1,5 @@
 <template>
-  <body>
+  <body class="body">
     <form id="main" @submit.prevent="data_form">
       <div class="main_name">
       <label>Название кнопки</label>
@@ -7,60 +7,52 @@
       <label>Название</label>
       <input class="name" v-model="name">
       <label>Связь</label>
-      <select class="link" v-model="selected_link">
-        <option value="" >Выбрать</option>
-        <option v-for="(links,i) in links" :key="i">{{links.fields}}</option>
-      </select>
+        <multiselect v-model="selected_link"
+                     tag-placeholder="Введите"
+                     label="name"
+                     track-by="code"
+                     :options="links"
+                     :multiple="true"
+                     :taggable="true"
+                     @tag="addTag">
+        </multiselect>
+        <div>
+        <button id="button" @click="data_form">ОК</button></div>
       </div>
       <div class="main_text">
       <label>Текст</label>
       <textarea class="text" v-model="text"></textarea>
       </div>
-      <button id="button" type="submit"></button>
-      <p>{{selected_link}}</p>
+
     </form>
   </body>
 </template>
 
 <script>
+import Multiselect from 'vue-multiselect'
 import axios from 'axios'
 export default {
+  components: { Multiselect },
   name: "Main",
   data() {
     return {
+      selected_links:[],
       links: [
         {
+          code: 'n1',
           name: 'name1',
-          active: true,
-          fields:[
-            {
-              id: 0,
-              name: 'name1.1',
-              value: 'name1.1'
-            },
-            {
-              id: 1,
-              name: 'name1.2',
-              value: 'name1.2'
-            },
-
-          ]
         },
         {
+          code: 'n2',
           name: 'name2',
-          active: true,
-          fields: [
-            {
-              id: 0,
-              name: 'name2.1',
-              value: 'name2.1'
-            },
-            {
-              id: 1,
-              name: 'name2.2',
-              value: 'name2.2',
-            }
-          ]
+        },
+        {
+          code: 'n3',
+          name: 'name3',
+        },
+        {
+          code: 'n4',
+          name: 'name4',
         },
       ],
       selected_link: "",
@@ -88,13 +80,52 @@ export default {
       }).then(response => {
         this.response = JSON.stringify(response, null, 2)
       })
+    },
+    addTag(newTag){
+      const tag = {
+        name: newTag,
+        code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000)),
+      }
+      this.links.push(tag);
     }
   }
 }
 </script>
 
-<style scoped>
-body{
+<style src="vue-multiselect/dist/vue-multiselect.min.css">
+
+</style>
+<style>
+.multiselect__tags{
+  border-radius: 0;
+}
+.multiselect__content-wrapper{
+  border-radius: 0;
+}
+.multiselect__option:hover{
+  background-color:#4633A7;
+  color: white;
+}
+.multiselect__option--highlight{
+  background-color:#4633A7;
+  color: white;
+}
+.multiselect__option--highlight:after{
+  background-color:#4633A7;
+  color: white;
+}
+.multiselect__tag{
+  background: #4633A7;
+}
+.multiselect__spinner:before{
+  border-color:#4633A7 ;
+}
+
+/*
+.multiselect__option:hover{
+  background-color: #4633A7 ;
+}*/
+.body{
   font-family: 'OpenSans-Light';
   display: flex;
   justify-content: center;
@@ -102,27 +133,31 @@ body{
   color: white;
   font-size: 20px;
 }
+
 label{
   text-align: center;
 }
 #main{
   background: linear-gradient(0deg,#A74187 5%, #4633A7);
   box-shadow: 0 0 10px rgb(0, 0, 0);
-  width: 60%;
+  width: 70vw;
   height: 70vh;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 .main_name{
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  justify-content: center;
+  text-align: center;
+  padding-right: 2vw;
 }
 .main_text{
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding-left: 2vw;
 }
 input{
   font-family: 'OpenSans-Light';
@@ -143,8 +178,8 @@ textarea:focus{
   box-shadow: 0 0 3px rgb(70, 51, 167);
 }
 .text{
-  height: 40vh;
-  width: 53vh;
+  height: 60vh;
+  width: 30vw;
   resize: none;
   font-family: 'OpenSans-Light';
   color: #FFFFFF;
@@ -166,18 +201,17 @@ textarea:focus{
 #button{
   font-family: 'OpenSans-Light';
   font-size: 1.1vw;
-  width: 20%;
+  width: 20vw;
   height: 7vh;
-  position: absolute;
   top:73%;
   background: #4633A7;
   border: none;
   color: #FFFFFF;
-  margin: 10px;
+  margin-top: 10vh;
 }
 #button:hover{
 }
-button:focus{
+#button:focus{
   outline: none;
   box-shadow:  0 0 7px #FFFFFF;
 }
