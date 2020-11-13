@@ -135,7 +135,7 @@ export default {
 }
 
 label{
-  text-align: center;
+  text-align: left;
 }
 #main{
   background: linear-gradient(0deg,#A74187 5%, #4633A7);
@@ -167,7 +167,7 @@ input{
   width: 25vw;
   height: 5vh;
   background: none;
-  border: solid 0.5px #FFFFFF;
+  border: solid 2px #FFFFFF;
 }
 input:focus{
   outline:none;
@@ -185,7 +185,7 @@ textarea:focus{
   color: #FFFFFF;
   font-size: 1.1vw;
   background: none;
-  border: solid 0.5px #FFFFFF;
+  border: solid 2px #FFFFFF;
 }
 .link{
   overflow-y: auto;

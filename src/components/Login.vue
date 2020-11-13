@@ -90,7 +90,7 @@ form{
   width: 17vw;
   height: 5vh;
   background: none;
-  border: solid 0.5px #CDCBD7;
+  border: solid 2px #CDCBD7;
 
 }
 input:focus{
@@ -106,11 +106,12 @@ input:focus{
   width: 17vw;
   height: 5vh;
   background: none;
-  border: solid 0.5px #CDCBD7;
+  border: solid 2px #CDCBD7;
   font-size: 1.1vw;
 }
 input::-webkit-input-placeholder{
   color: #a7a7a7;
+  padding-left: 6px;
 }
 #button_login{
   font-family: 'OpenSans-Light';
