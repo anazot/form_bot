@@ -7,7 +7,7 @@
       <label>Название</label>
       <input class="name" v-model="name">
       <label>Связь</label>
-        <multiselect v-model="selected_link"
+        <multiselect v-model="selected_links"
                      tag-placeholder="Введите"
                      label="name"
                      track-by="code"
@@ -86,7 +86,7 @@ export default {
         name: newTag,
         code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000)),
       }
-      this.links.push(tag);
+      this.selected_links.push(tag);
     }
   }
 }
