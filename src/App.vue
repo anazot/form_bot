@@ -1,20 +1,18 @@
 <template>
   <div id="app">
     <div id="nav">
-      <Main></Main>
-     <!--<router-view/>-->
+     <router-view/>
     </div>
   </div>
 </template>
 
 <script>
 
-import Main from "@/components/Main";
 export default {
   name: 'App',
 
   components:{
-    Main
+
 
   },
   computed:{
