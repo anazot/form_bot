@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import store from './store/index.js'
 import Login from './components/Login.vue'
 import Main from "./components/Main.vue";
+import Register from "@/components/Register";
 
 Vue.use(Router)
 const Authenticated = (to, from, next) => {
@@ -26,6 +27,11 @@ const router = new Router({
         {
             path: '/',
             component: Login,
+            beforeEnter: notAuthenticated
+        },
+        {
+            path: '/register',
+            component: Register,
             beforeEnter: notAuthenticated
         },
         {

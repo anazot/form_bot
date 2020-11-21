@@ -7,6 +7,7 @@
       <input class="auth" id="login" required type="text" v-model="login" name="login" placeholder="Логин">
       <input class="auth" id="password" required type="password" v-model="password" name="password" placeholder="Пароль">
       <button id="button_login" type="submit">Войти</button>
+      <label class="register" @click="path_register">Зарегистрироваться</label>
     </form>
   </div>
   </body>
@@ -30,6 +31,9 @@ export default {
 
   },
   methods:{
+    path_register: function(){
+      this.$router.push('/register')
+    },
     signup: function (){
       let login = this.login;
       let password = this.password;
@@ -63,7 +67,7 @@ body{
   align-items: center;
 }
 form{
-  width: 100%;
+  width: 100vw;
   height: 100%;
   position: relative;
   display: flex;
@@ -92,6 +96,13 @@ form{
   background: none;
   border: solid 2px #CDCBD7;
 
+}
+.register{
+  font-size: 0.9vw;
+  color: #FFFFFF;
+  position: absolute;
+  top: 52vh;
+  border-bottom: solid 1px;
 }
 input:focus{
   outline:none;
@@ -132,6 +143,10 @@ input::-webkit-input-placeholder{
 button:focus{
   outline: none;
   box-shadow: inset 0 0 7px #4633A7;
+}
+.register:hover{
+  color: #4633A7;
+  transition: all 0.05s;
 }
 .auth{
   margin:15px;

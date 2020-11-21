@@ -1,22 +1,21 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-view/>
+      <Main></Main>
+     <!--<router-view/>-->
     </div>
   </div>
 </template>
 
 <script>
 
-//import Login from './components/Login.vue'
-//import Main from "@/components/Main";
-
+import Main from "@/components/Main";
 export default {
   name: 'App',
 
   components:{
-      //Main,
-      //Login,
+    Main
+
   },
   computed:{
     isLogged: function (){

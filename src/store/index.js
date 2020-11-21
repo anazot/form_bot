@@ -56,6 +56,29 @@ export default new Vuex.Store({
 
       })
     },
+      register({commit},user){
+          return new Promise((resolve, reject) => {
+              commit('load_auth')
+              axios({
+                  url: '',
+                  data: user,
+                  method: 'POST'
+              })
+                  .then( response => {
+                      let token = response.data.token
+                      localStorage.setItem('token', token)
+                      axios.defaults.headers.common['Authorization'] = token
+                      commit('success_auth',user, token)
+                      resolve(response)
+                  })
+                  .catch( error => {
+                      commit('error_auth',error)
+                      localStorage.removeItem('token')
+                      reject(error)
+                  })
+
+          })
+      },
     logout({commit}){
         return new Promise ((resolve) => {
             commit('logout')
